@@ -1,5 +1,28 @@
-import {ADD_TODO, REMOVE_TODO} from './ActionTypes';
+// actions/todoActions.js
+export const addTodo = todo => {
+  return {
+    type: 'ADD_TODO',
+    payload: todo,
+  };
+};
 
-export const AddTodo = payload => ({type: ADD_TODO, payload});
+export const toggleTodoStatus = id => {
+  return {
+    type: 'TOGGLE_TODO_STATUS',
+    payload: id,
+  };
+};
 
-export const RemoveTodo = payload => ({type: REMOVE_TODO, payload});
+export const deleteTodo = id => {
+  return {
+    type: 'DELETE_TODO',
+    payload: id,
+  };
+};
+
+export const setTodos = todos => {
+  return {
+    type: 'SET_TODOS',
+    payload: todos,
+  };
+};
