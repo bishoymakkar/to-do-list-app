@@ -1,16 +1,26 @@
+// App.js
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import TodoList from './component/TodoList';
+import {TodoProvider} from './reducers/TodoContext';
 import {Provider} from 'react-redux';
-import logger from 'redux-logger';
-import {createStore, applyMiddleware} from 'redux';
-import Todo from './component/Todo';
-import rootReducer from './reducers/rootReducer';
+import store from './store';
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const Stack = createStackNavigator();
 
-const App = () => (
-  <Provider store={store}>
-    <Todo />
-  </Provider>
-);
+const App = () => {
+  return (
+    <Provider store={store}>
+      <TodoProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="TodoList" component={TodoList} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </TodoProvider>
+    </Provider>
+  );
+};
 
 export default App;
